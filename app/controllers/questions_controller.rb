@@ -46,6 +46,10 @@ class QuestionsController < ApplicationController
 private
   def find_question
     @question = Question.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The question you were looking for " +
+      "could not be found."
+    redirect_to questions_path
   end
 
 end
