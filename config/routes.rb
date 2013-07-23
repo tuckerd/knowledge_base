@@ -1,4 +1,8 @@
 KnowledgeBase::Application.routes.draw do
+  root to: "questions#index"
+
+  resources :questions
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
