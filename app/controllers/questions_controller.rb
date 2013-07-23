@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,8 +12,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(params[:question])
-    if @question.save
+    @question = current_user.questions.create(params[:question])
+    if @question.valid?
       flash[:notice] = "Question has been created."
       redirect_to @question
     else
@@ -29,6 +30,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update_attributes(params[:question])
+      @question.users |= [current_user]
       flash[:notice] = "Question has been updated."
       redirect_to @question
     else
@@ -51,5 +53,6 @@ private
       "could not be found."
     redirect_to questions_path
   end
+
 
 end

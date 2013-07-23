@@ -16,5 +16,11 @@
 <%= link_to "Delete Question", question_path, method: :delete,
         confirm:"Are you sure you want to remove the entire question?" %>
 </br>
-<span id="contributor">Authors:</span>
+<div id="contributor">Contributors:
+  <ul>
+  <% @question.users.each do |user| %>
+    <li><%= user.email %></li>
+  <% end %>
+  </ul>
+</div>
 
