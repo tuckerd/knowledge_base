@@ -1,5 +1,0 @@
-== Knowledge Base
-
-This small app is an exercise in setting up authentication in rails. This is a CodeFellows App A Day project.
-
-The basic functionality of this app is that users can pose and answer questions that other users have posed.
